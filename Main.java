@@ -7,42 +7,42 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-	split_words(in.nextLine());
+	splitWords(in.nextLine());
 
     }
-    public static void split_words(String sentence){
+    public static void splitWords(String sentence){
 
         // Delete forward spaces
-        while (sentence.split("")[0].equals(" ")){
+        while (sentence.charAt(0) == ' '){
             sentence = sentence.substring(1,sentence.length());
         }
 
         // Delete last spaces
-        while (sentence.split("")[sentence.length()-1].equals(" ")){
+        while (sentence.charAt(sentence.length() - 1) == ' '){
             sentence = sentence.substring(0,sentence.length()-1);
         }
 
         // Delete middle spaces
-        String[] array_sentence = sentence.split("");
-        String clean_sentence = "";
-        boolean previous_space = false;
-        for (int l = 0; l < array_sentence.length; l++){
+        String[] arraySentence = sentence.split("");
+        String cleanSentence = "";
+        boolean previousSpace = false;
+        for (int l = 0; l < arraySentence.length; l++){
 
-            if (array_sentence[l].equals(" ")) {
-                if (!previous_space) {
-                    clean_sentence += array_sentence[l];
-                    previous_space = true;
+            if (arraySentence[l].equals(" ")) {
+                if (!previousSpace) {
+                    cleanSentence += arraySentence[l];
+                    previousSpace = true;
 
                 }
             } else {
-                clean_sentence += array_sentence[l];
-                previous_space = false;
+                cleanSentence += arraySentence[l];
+                previousSpace = false;
 
 
             }
         }
-        array_sentence = clean_sentence.split(" ");
+        arraySentence = cleanSentence.split(" ");
 
-        System.out.println(Arrays.toString(array_sentence));
+        System.out.println(Arrays.toString(arraySentence));
     }
 }
