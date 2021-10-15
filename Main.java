@@ -5,44 +5,25 @@ import java.util.Scanner;
 
 public class Main {
 
+    final static String space = " ";
+    final static String doubleSpaces = "  ";
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-	splitWords(in.nextLine());
+    System.out.println("Write the sentence: ");
+	 String sentence = deleteMiddleSpacesRecusrsive(in.nextLine().trim());
+     System.out.println(Arrays.toString(sentence.split(" ")));
 
     }
-    public static void splitWords(String sentence){
 
-        // Delete forward spaces
-        while (sentence.charAt(0) == ' '){
-            sentence = sentence.substring(1,sentence.length());
+    public static String deleteMiddleSpacesRecusrsive(String str){
+        if (str.contains(doubleSpaces)){
+            str=str.replace(doubleSpaces,space);
+            return deleteMiddleSpacesRecusrsive(str);
+        }
+        else {
+            return str;
         }
 
-        // Delete last spaces
-        while (sentence.charAt(sentence.length() - 1) == ' '){
-            sentence = sentence.substring(0,sentence.length()-1);
-        }
-
-        // Delete middle spaces
-        String[] arraySentence = sentence.split("");
-        String cleanSentence = "";
-        boolean previousSpace = false;
-        for (int l = 0; l < arraySentence.length; l++){
-
-            if (arraySentence[l].equals(" ")) {
-                if (!previousSpace) {
-                    cleanSentence += arraySentence[l];
-                    previousSpace = true;
-
-                }
-            } else {
-                cleanSentence += arraySentence[l];
-                previousSpace = false;
-
-
-            }
-        }
-        arraySentence = cleanSentence.split(" ");
-
-        System.out.println(Arrays.toString(arraySentence));
     }
 }
